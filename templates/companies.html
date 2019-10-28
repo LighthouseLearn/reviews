@@ -1,0 +1,40 @@
+{% extends 'baseb.html' %}
+
+{% block title %}
+  {{ board.name }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'boardhome' %}">Boards</a></li>
+  <li class="breadcrumb-item active">{{ board.name }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="mb-4">
+    <a href="{% url 'new_company' board.pk %}" class="btn btn-primary">Add New Company</a>
+  </div>
+  
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Company</th>
+        <th>Starter</th>
+        <th>Reviewss</th>
+        <th>Views</th>
+        <th>Last Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for company in board.companies.all %}
+        <tr>
+          <td>{{ company.name }}</td>
+          <td>{{ company.starter.username }}</td>
+          <td>0</td>
+          <td>0</td>
+          <td>{{ company.last_updated }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    <!-- just leaving it empty for now. we will add core here soon. -->
+{% endblock %}

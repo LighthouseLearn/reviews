@@ -1,0 +1,17 @@
+{% extends 'baseb.html' %}
+
+{% block title %}Add a New Company{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'boardhome' %}">Boards</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'board_companies' board.pk %}">{{ board.name }}</a></li>
+  <li class="breadcrumb-item active">Add Company</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Post</button>
+  </form>
+{% endblock %}
