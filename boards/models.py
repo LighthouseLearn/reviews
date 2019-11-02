@@ -10,9 +10,16 @@ class Board(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_reviews_count(self):
+        return Review.objects.filter(company__board=self) .count()
+    
+    def get_last_review(self):
+        return Review.objects.filter(company__board=self) .order_by('created_at') .first()
 
 class Company(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    #bio = models.TextField(max_length=4000)
     last_updated = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey(Board, on_delete = models.CASCADE, related_name='companies')
     starter = models.ForeignKey(
@@ -20,6 +27,8 @@ class Company(models.Model):
         on_delete=models.CASCADE,
         related_name='companies',
     )
+    views = models.PositiveIntegerField(default=0)
+
     def average_rating(self):
         all_ratings = map(lambda x: x.rating, self.review_set.all())
         return np.mean(all_ratings)
@@ -66,8 +75,9 @@ class Review(models.Model):
     
     company = models.ForeignKey(Company, on_delete = models.CASCADE, related_name='reviews')
     address = models.CharField(max_length=200, blank=False, default="")
-    move_in_condition = models.CharField(max_length=5,choices=RATING_CHOICES)
     length_of_stay = models.CharField(max_length=20, choices=STAY, blank=False)
+    move_in_condition = models.CharField(max_length=5,choices=RATING_CHOICES)
+    
 
     #Landlord Interaction
 

@@ -1,5 +1,6 @@
 {% extends 'baseb.html' %}
 
+{% load widget_tweaks %}
 {% block title %}Add a New Company{% endblock %}
 
 {% block breadcrumb %}
@@ -11,7 +12,8 @@
 {% block content %}
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% include 'includes/form.html' %}
+  
     <button type="submit" class="btn btn-success">Post</button>
   </form>
 {% endblock %}

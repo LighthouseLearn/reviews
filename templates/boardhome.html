@@ -21,9 +21,27 @@
             <a href="{% url 'board_companies' board.pk %}">{{ board.name }}</a>
             <small class="text-muted d-block">{{ board.description }}</small>
           </td>
-          <td class="align-middle">0</td>
-          <td class="align-middle">0</td>
-          <td></td>
+          <td class="align-middle">
+            {{ board.get_reviews_count }}
+          </td>
+          <td class="align-middle">
+            {{ board.companies.count }}
+          </td>
+          <td class="align-middle">
+            {% with review=board.get_last_review %}
+              {% if review %}
+                <small>
+                  <a href="{% url 'company_reviews' board.pk review.company.pk %}">
+                    By {{ review.created_by.username }} at {{ review.created_at }}
+                  </a>
+                </small>
+              {% else %}
+                <small class="text-muted">
+                  <em>No reviews yet.</em>
+                </small>
+              {% endif %}  
+            {% endwith %}
+          </td>
         </tr>
       {% endfor %}
     </tbody>
