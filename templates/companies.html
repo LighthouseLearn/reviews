@@ -18,7 +18,7 @@
     <thead class="thead-inverse">
       <tr>
         <th>Company</th>
-        <th>Starter</th>
+        <th>Overall Average Rating</th>
         <th>Reviews</th>
         <th>Views</th>
         <th>Last Update</th>
@@ -28,7 +28,7 @@
       {% for company in companies %}
         <tr>
           <td><a href="{% url 'company_reviews' board.pk company.pk %}">{{ company.name }}</a></td>
-          <td>{{ company.starter.username }}</td>
+          <td>{{ company.get_avg.overall_rating__avg }}</td>
           <td>{{ company.replies }}</td>
           <td>{{ company.views }}</td>
           <td>{{ company.last_updated }}</td>

@@ -21,7 +21,7 @@
     <button type="submit" class="btn btn-success">Add a review</button>
   </form>
 
-  {% for review in company.reviews.all %}
+  {% for review in company.get_last_ten_reviews %}
     <div class="card mb-2">
       <div class="card-body p-3">
         <div class="row mb-3">

@@ -2,14 +2,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Board, Company, Review
 from django.conf import settings
-from users.models import CustomUser
+
+from django.contrib.auth import get_user_model
 from .forms import NewCompanyForm, ReviewForm
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Avg
 from django.views.generic import UpdateView
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 # Create your views here.
+User = get_user_model()
 
 @method_decorator(login_required, name='dispatch')
 class ReviewUpdateView(UpdateView):
@@ -44,6 +46,7 @@ def company_reviews(request, pk, company_pk):
     company.views += 1
     company.save()
     return render(request, 'company_reviews.html', {'company': company})
+        
 
 @login_required
 def add_review_company(request, pk, company_pk):
@@ -55,6 +58,9 @@ def add_review_company(request, pk, company_pk):
             review.company = company
             review.created_by = request.user
             review.save()
+
+            company.last_updated = timezone.now()
+            company.save()
             return redirect('company_reviews', pk=pk, company_pk=company_pk)
     else:
         form = ReviewForm()
@@ -64,7 +70,7 @@ def add_review_company(request, pk, company_pk):
 @login_required
 def new_company(request, pk):
     board = get_object_or_404(Board, pk=pk)
-    user = CustomUser.objects.first()  # TODO: get the currently logged in user
+    user = settings.AUTH_USER_MODEL  # TODO: get the currently logged in user
     if request.method == 'POST':
         form = NewCompanyForm(request.POST)
         if form.is_valid():
