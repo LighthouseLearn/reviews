@@ -1,5 +1,6 @@
 {% extends 'baseb.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}{{ company.name }}{% endblock %}
 
@@ -17,40 +18,53 @@
   {% for review in company.get_recent_reviews %}
     <div class="card mb-2" {% if forloop.first %}border-dark{% endif %}">
     {% if forloop.first %}
-      <div class="card-header text-white bg-dark py-2 px-3"><b>{{ company.name }}</b>
-      <br><small class="text-muted"> #company bio feature coming soon! </small>
+
+      <div class="card-header text-white bg-success py-2 px-3"><b>{{ company.name }}</b>
+      <br><small> #company bio feature coming soon! </small>
+       
        <br> Overall Rating: {{ company.get_avg.overall_rating__avg }}
-       <br> - Move in Condition: {{ company.get_avg.move_in_condition__avg }}
+       
+       <button type="button" class="btn btn-outline-light btn-sm" data-toggle="collapse"" data-target="#detailed"> + </button>
+       
+       <div id="detailed" class="collapse">
+       - Move in Condition: {{ company.get_avg.move_in_condition__avg }}
        <br> - Treatment: {{ company.get_avg.treatment__avg }}
        <br> - Response Speed Rating: {{ company.get_avg.response_speed__avg }}
        <br> - Maintenance Quality: {{ company.get_avg.maintenance_quality__avg }}
+       </div>
       </div>
     {% endif %}
-      <div class="card-body p-3">
+      <div class="card-body p-3 bg-light mb-3">
         <div class="row">
-          <div class="col-2">
+  <!--       <div class="col-3", "w-25">
             <img src="{% static 'images/avatar.svg' %}" alt="{{ review.created_by.username }}" class="w-100">
+          </div>
+     -->   
+          <div class="col-3">  
+             <strong class="text-muted">{{ review.created_by.username }}</strong> <br>
             <small>Reviews: {{ review.created_by.reviews.count }}</small>
           </div>
+              <div class="col-9 text-right">
+                <small class="text-muted">{{ review.created_at|naturalday }}</small>
+              </div>          
           <div class="col-10">
             <div class="row mb-3">
               <div class="col-6">
-                <strong class="text-muted">{{ review.created_by.username }}</strong> 
+               
               </div>
-              <div class="col-6 text-right">
-                <small class="text-muted">{{ review.created_at }}</small>
-              </div>
+
             </div>
-        Unit Address: {{ review.address }}<br>
-        Length of stay: {{ review.length_of_stay }} <br>
-        Move-in condition: {{ review.move_in_condition }} <br>
-        Treatment ( respectful? ): {{ review.treatment }} <br>
-        Response speed: {{ review.response_speed }} <br>
-        Maintenance quality: {{ review.maintenance_quality }} <br>
-        Security deposit returned: {{ review.security_deposit_returned }} <br>
-        Is this a fair amount? {{ review.is_this_a_fair_amount }} <br>
-        Would you recommend this company?: {{ review.would_you_recommend }} <br>
-        Additional comments: {{ review.additional_comments }}
+        
+        <em class="mb-2 text-muted">{{ review.length_of_stay }} @ {{ review.address }}</em><br><br>
+        <strong>{{ review.move_in_condition }}</strong> out of 5 move-in condition <br>
+        <strong>{{ review.treatment }}</strong> out of 5 treatment  <br>
+        <strong>{{ review.response_speed }}</strong> out of 5 response speed  <br>
+        <strong>{{ review.maintenance_quality }}</strong> out of 5 quality of maintenance  <br><br>
+        
+        <strong>{{ review.security_deposit_returned }}</strong> of security deposit returned <br>
+        Is this a amount fair? <strong>{{ review.is_this_a_fair_amount }}</strong> <br>
+        Would you recommend? <strong>{{ review.would_you_recommend }}</strong> <br><br>
+        <u>additional comments</u>:<i> {{ review.additional_comments }}</i>
             {% if review.created_by == user %}
               <div class="mt-3">
                 <a href="{% url 'edit_review' review.company.board.pk review.company.pk review.pk %}" 
@@ -65,4 +79,5 @@
   {% endfor %}
 
 
+   <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-primary btn-block" role="button">Add Review</a>
 {% endblock %}

@@ -91,15 +91,15 @@ class Review(models.Model):
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null=True, related_name='+')
     company = models.ForeignKey(Company, on_delete = models.CASCADE, related_name='reviews')
     address = models.CharField(max_length=200, blank=False, default="")
-    length_of_stay = models.CharField(max_length=20, choices=STAY, blank=False)
+    length_of_stay = models.CharField(max_length=20, choices=STAY, blank=False, default='None')
     #Apartment Condition
-    move_in_condition = models.CharField(max_length=5,choices=RATING_CHOICES)
+    move_in_condition = models.CharField(max_length=5,choices=RATING_CHOICES, blank=False, default='5')
     #Landlord Interaction
-    treatment = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="3")
-    response_speed = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="3")
-    maintenance_quality = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="3")
+    treatment = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
+    response_speed = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
+    maintenance_quality = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
 
-    security_deposit_returned = models.CharField(max_length=5, choices=SECURITY, blank=False, default ="1")
+    security_deposit_returned = models.CharField(max_length=5, choices=SECURITY, blank=False, default ="None")
     #put text "ignore if still waiting"
     is_this_a_fair_amount = models.CharField(max_length=5, choices=YES_NO, blank=False, default="1")
     would_you_recommend = models.CharField(max_length=5, choices=YES_NO, blank=False, default="1")

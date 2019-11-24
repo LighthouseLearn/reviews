@@ -12,7 +12,13 @@ class NewCompanyForm(forms.ModelForm):
         # 'length_of_stay', 'treatment', 'response_speed', 'maintenance_quality', 'security_deposit_returned', 'is_this_a_fair_amount', 'would_you_recommend', 
 
 class ReviewForm(forms.ModelForm):
-   
+
     class Meta:
         model = Review
         fields = ['address', 'length_of_stay', 'move_in_condition', 'treatment', 'response_speed', 'maintenance_quality', 'security_deposit_returned', 'is_this_a_fair_amount', 'would_you_recommend', 'additional_comments']
+       # widgets = {
+        #    'move_in_condition': forms.RadioSelect,
+         #   'treatment': forms.RadioSelect,
+          #  'response_speed': forms.RadioSelect,
+           # 'maintenance_quality': forms.RadioSelect,
+        #}

@@ -1,4 +1,5 @@
 {% extends 'baseb.html' %}
+{% load humanize %}
 
 {% block title %}
   {{ board.name }} - {{ block.super }}
@@ -14,11 +15,11 @@
     <a href="{% url 'new_company' board.pk %}" class="btn btn-primary">Add New Company</a>
   </div>
   
-  <table class="table">
+  <table class="table table-striped">
     <thead class="thead-inverse">
       <tr>
         <th>Company</th>
-        <th>Overall Average Rating</th>
+        <th>Rating</th>
         <th>Reviews</th>
         <th>Views</th>
         <th>Last Update</th>
@@ -28,10 +29,10 @@
       {% for company in companies %}
         <tr>
           <td><a href="{% url 'company_reviews' board.pk company.pk %}">{{ company.name }}</a></td>
-          <td>{{ company.get_avg.overall_rating__avg }}</td>
+          <td>{{ company.get_avg.overall_rating__avg|floatformat:"2" }}</td>
           <td>{{ company.replies }}</td>
           <td>{{ company.views }}</td>
-          <td>{{ company.last_updated }}</td>
+          <td>{{ company.last_updated|naturalday }}</td>
         </tr>
       {% endfor %}
     </tbody>
