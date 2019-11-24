@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-from django.db.models import Avg, F
+from django.db.models import Avg, F, Sum
 
 
 # Create your models here.
@@ -44,7 +44,7 @@ class Company(models.Model):
 
     def get_avg(self):
         return self.reviews.annotate(
-            overall_rating = Avg(
+            overall_rating = Sum(
                 F('move_in_condition') + 
                 F('treatment') + 
                 F('response_speed') +
