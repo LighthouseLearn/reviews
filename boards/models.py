@@ -93,11 +93,11 @@ class Review(models.Model):
     address = models.CharField(max_length=200, blank=False, default="")
     length_of_stay = models.CharField(max_length=20, choices=STAY, blank=False, default="None")
  
-    move_in_condition = models.IntegerField(choices=RATING_CHOICES, blank=False, default="5")
+    move_in_condition = models.IntegerField(choices=RATING_CHOICES, blank=False, default=5)
     #Landlord Interaction
-    treatment = models.IntegerField(choices=RATING_CHOICES, blank=False, default ="5")
-    response_speed = models.IntegerField(choices=RATING_CHOICES, blank=False, default ="5")
-    maintenance_quality = models.IntegerField(choices=RATING_CHOICES, blank=False, default ="5")    
+    treatment = models.IntegerField(choices=RATING_CHOICES, blank=False, default =5)
+    response_speed = models.IntegerField(choices=RATING_CHOICES, blank=False, default =5)
+    maintenance_quality = models.IntegerField(choices=RATING_CHOICES, blank=False, default =5)    
 
     security_deposit_returned = models.CharField(max_length=5, choices=SECURITY, blank=False, default ="None")
     #put text "ignore if still waiting"
