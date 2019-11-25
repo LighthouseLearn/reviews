@@ -91,7 +91,7 @@ class Review(models.Model):
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null=True, related_name='+')
     company = models.ForeignKey(Company, on_delete = models.CASCADE, related_name='reviews')
     address = models.CharField(max_length=200, blank=False, default="")
-    length_of_stay = models.CharField(max_length=20, choices=STAY, blank=False, default='None')
+    length_of_stay = models.CharField(max_length=20, choices=STAY, blank=False, default="None")
  
     move_in_condition = models.IntegerField(choices=RATING_CHOICES, blank=False, default="5")
     #Landlord Interaction
