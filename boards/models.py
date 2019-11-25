@@ -45,10 +45,10 @@ class Company(models.Model):
     def get_avg(self):
         return self.reviews.annotate(
             overall_rating = Sum(
-                F('move_in_condition') + 
-                F('treatment') + 
-                F('response_speed') +
-                F('maintenance_quality')
+                F(move_in_condition) + 
+                F(treatment) + 
+                F(response_speed) +
+                F(maintenance_quality)
             )/4).aggregate(
                 Avg('overall_rating'), 
                 Avg('move_in_condition'),
@@ -92,13 +92,7 @@ class Review(models.Model):
     company = models.ForeignKey(Company, on_delete = models.CASCADE, related_name='reviews')
     address = models.CharField(max_length=200, blank=False, default="")
     length_of_stay = models.CharField(max_length=20, choices=STAY, blank=False, default='None')
-    #Apartment Condition
-   # move_in_condition = models.CharField(max_length=5,choices=RATING_CHOICES, blank=False, default='5')
-    #Landlord Interaction
-   # treatment = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
-   # response_speed = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
-  #  maintenance_quality = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
-    
+ 
     move_in_condition = models.IntegerField(choices=RATING_CHOICES, blank=False, default='5')
     #Landlord Interaction
     treatment = models.IntegerField(choices=RATING_CHOICES, blank=False, default ="5")
@@ -113,6 +107,12 @@ class Review(models.Model):
 
     def __str__(self):
         return self.address
+       #Apartment Condition
+   # move_in_condition = models.CharField(max_length=5,choices=RATING_CHOICES, blank=False, default='5')
+    #Landlord Interaction
+   # treatment = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
+   # response_speed = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
+  #  maintenance_quality = models.CharField(max_length=5, choices=RATING_CHOICES, blank=False, default ="5")
     
 
 
