@@ -25,15 +25,14 @@
         {% if user.is_authenticated %}
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="#" id="userMenu"\
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded\
+              <a class="nav-link dropdown-toggle" href="#" id="userMenu"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded
               ="false">
                 {{ user.username }}
               </a>
-              <div class="dropdown-menu dropdown-menu-right"\
+              <div class="dropdown-menu dropdown-menu-right"
               aria-labelledby="userMenu">
-                <a class="dropdown-item" href="{% url 'password_change'\
-                %}">Change password</a>
+                <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'logout' %}">
                 Log Out</a>
