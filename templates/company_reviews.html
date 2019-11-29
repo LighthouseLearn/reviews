@@ -12,7 +12,7 @@
 
 {% block content %}
  <div class="mb-4">
-    <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-primary" role="button">Add Review</a>
+    <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-warning" role="button">Add Review</a>
   </div>
 
   {% for review in company.get_recent_reviews %}
@@ -27,10 +27,10 @@
        <button type="button" class="btn btn-outline-light btn-sm" data-toggle="collapse"" data-target="#detailed"> + </button>
        
        <div id="detailed" class="collapse">
-       - Move in Condition: {{ company.get_avg.move_in_condition__avg }}
-       <br> - Treatment: {{ company.get_avg.treatment__avg }}
-       <br> - Response Speed Rating: {{ company.get_avg.response_speed__avg }}
-       <br> - Maintenance Quality: {{ company.get_avg.maintenance_quality__avg }}
+       - Move in Condition: {{ company.get_avg.move_in_condition__avg|floatformat:2 }}
+       <br> - Treatment: {{ company.get_avg.treatment__avg|floatformat:2 }}
+       <br> - Response Speed Rating: {{ company.get_avg.response_speed__avg|floatformat:2 }}
+       <br> - Maintenance Quality: {{ company.get_avg.maintenance_quality__avg|floatformat:2 }}
        </div>
       </div>
     {% endif %}
@@ -69,7 +69,7 @@
             {% if review.created_by == user %}
               <div class="mt-3">
                 <a href="{% url 'edit_review' review.company.board.pk review.company.pk review.pk %}" 
-                  class="btn btn-primary btn-sm" 
+                  class="btn btn-outline-success btn-sm" 
                   role="button">Edit</a>
               </div>
             {% endif %}
@@ -80,5 +80,5 @@
   {% endfor %}
 
 
-   <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-primary btn-block" role="button">Add Review</a>
+   <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-warning btn-block" role="button">Add Review</a>
 {% endblock %}
