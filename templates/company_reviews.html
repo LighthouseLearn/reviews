@@ -22,15 +22,15 @@
       <div class="card-header text-white bg-success py-2 px-3"><b>{{ company.name }}</b>
       <br><small> #company bio feature coming soon! </small>
        
-       <br> Overall Rating: {{ company.get_avg.overall_rating__avg }}
+       <br><b>{{ company.get_avg.overall_rating__avg }}</b> Overall Rating
        
        <button type="button" class="btn btn-outline-light btn-sm" data-toggle="collapse"" data-target="#detailed"> + </button>
        
        <div id="detailed" class="collapse">
-       - Move in Condition: {{ company.get_avg.move_in_condition__avg|floatformat:2 }}
-       <br> - Treatment: {{ company.get_avg.treatment__avg|floatformat:2 }}
-       <br> - Response Speed Rating: {{ company.get_avg.response_speed__avg|floatformat:2 }}
-       <br> - Maintenance Quality: {{ company.get_avg.maintenance_quality__avg|floatformat:2 }}
+       {{ company.get_avg.move_in_condition__avg|floatformat:1 }}</b> - Move in Condition 
+       <br><b>{{ company.get_avg.treatment__avg|floatformat:1 }}</b> - Treatment
+       <br><b>{{ company.get_avg.response_speed__avg|floatformat:1 }}</b> - Response Speed Rating 
+       <br><b>{{ company.get_avg.maintenance_quality__avg|floatformat:1 }}</b> - Maintenance Quality
        </div>
       </div>
     {% endif %}

@@ -12,7 +12,7 @@
 
 {% block content %}
   <div class="mb-4">
-    <a href="{% url 'new_company' board.pk %}" class="btn btn-success">Add New Company</a>
+    <a href="{% url 'new_company' board.pk %}" class="btn btn-success">Add Rental Company</a>
   </div>
   
   <table class="table table-striped">
@@ -29,7 +29,7 @@
       {% for company in companies %}
         <tr>
           <td><a href="{% url 'company_reviews' board.pk company.pk %}">{{ company.name }}</a></td>
-          <td>{{ company.get_avg.overall_rating__avg|floatformat:"2" }}</td>
+          <td><b>{{ company.get_avg.overall_rating__avg|floatformat:"1" }}</b></td>
           <td>{{ company.replies }}</td>
           <td>{{ company.views }}</td>
           <td>{{ company.last_updated|naturalday }}</td>
