@@ -12,7 +12,7 @@
 
 {% block content %}
  <div class="mb-4">
-    <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-warning" role="button">Add Review</a>
+    <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-warning" role="button">add review</a>
   </div>
 
   {% for review in company.get_recent_reviews %}
@@ -20,11 +20,10 @@
     {% if forloop.first %}
 
       <div class="card-header text-white bg-success py-2 px-3"><b>{{ company.name }}</b>
-      <br><small> #company bio feature coming soon! </small>
        
-       <br><h5><b>{{ company.get_avg.overall_rating__avg }}</b> Overall Rating</h5>
+       <br><h5><b>{{ company.get_avg.overall_rating__avg }}</b> overall rating</h5>
        
-       <button type="button" class="btn btn-outline-light btn-sm" data-toggle="collapse"" data-target="#detailed"> + </button>
+       <button type="button" class="btn btn-outline-light btn-sm" data-toggle="collapse"" data-target="#detailed">more details</button>
        
        <div id="detailed" class="collapse">
        <b>{{ company.get_avg.move_in_condition__avg|floatformat:1 }}</b> - Move in Condition 
@@ -43,7 +42,7 @@
           <div class="col-3">  
              <strong class="text-muted">{{ review.created_by.username }}</strong> <br>
              {{ review.created_by.student_designation }}
-            <small>Reviews: {{ review.created_by.reviews.count }}</small>
+            <small>reviews: {{ review.created_by.reviews.count }}</small>
           </div>
               <div class="col-9 text-right">
                 <small class="text-muted">{{ review.created_at|naturalday }}</small>
@@ -70,7 +69,7 @@
               <div class="mt-3">
                 <a href="{% url 'edit_review' review.company.board.pk review.company.pk review.pk %}" 
                   class="btn btn-outline-success btn-sm" 
-                  role="button">Edit</a>
+                  role="button">edit</a>
               </div>
             {% endif %}
           </div>
