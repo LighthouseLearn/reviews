@@ -3,12 +3,18 @@
 {% block title %}For students, by students{% endblock title %}
 
 {% block content %}
-{% if user.is_authenticated %}
+<!--{% if user.is_authenticated %}
     Hi {{ user.username }}, please proceed to our <a href="{% url 'boardhome' %}">reviews section</a>
     <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">login</a> |
     <a href="{% url 'signup' %}">signup</a>
-{% endif %}
+{% endif %}-->
+<divclass="jumbotron">
+    <h1 class="display-4">Renters Experiences</h1>
+    <p class="lead">Our goal is to help students better navigate the world of apartment rentals. <br>Help the student community! Share your rental experiences :) </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'boardhome' %}"role="button">Go to Reviews</a></p></div>
+
 {% endblock  %}
