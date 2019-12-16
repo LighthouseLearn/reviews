@@ -99,7 +99,7 @@ class Review(models.Model):
     response_speed = models.IntegerField(choices=RATING_CHOICES, blank=False, default =5)
     maintenance_quality = models.IntegerField(choices=RATING_CHOICES, blank=False, default =5)    
 
-    security_deposit_returned = models.CharField(max_length=5, choices=SECURITY, blank=False, default ="None")
+    security_deposit_returned = models.CharField(max_length=13, choices=SECURITY, blank=False, default ="None")
     #put text "ignore if still waiting"
     is_this_a_fair_amount = models.CharField(max_length=5, choices=YES_NO, blank=False, default="1")
     would_you_recommend = models.CharField(max_length=5, choices=YES_NO, blank=False, default="1")

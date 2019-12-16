@@ -8,6 +8,7 @@
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}">
     {% include 'includes/form.html' %}
+
     <button class="btn btn-success ml-2" type="submit">Login</button>
 </form>
           <small>
