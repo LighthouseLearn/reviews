@@ -44,12 +44,12 @@ class Company(models.Model):
 
     def get_avg(self):
         return self.reviews.annotate(
-            overall_rating = Sum(int(
+            overall_rating = Sum(
                 F('move_in_condition') + 
                 F('treatment') + 
                 F('response_speed') +
                 F('maintenance_quality')
-            ))/4).aggregate(
+            )/4).aggregate(
                 Avg('overall_rating'), 
                 Avg('move_in_condition'),
                 Avg('treatment'),
