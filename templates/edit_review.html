@@ -13,7 +13,7 @@
    <form method="post" class="mb-4" novalidate>
     {% csrf_token %}
     {% include 'includes/form.html' %}
-    <button type="submit" class="btn btn-success">save changes</button>
+    <button type="submit" class="btn btn-primary">save changes</button>
     <a href="{% url 'company_reviews' review.company.board.pk review.company.pk %}" class="btn btn-outline-secondary" role="button">cancel</a>
   </form>   
 {% endblock content %}

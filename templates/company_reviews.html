@@ -12,14 +12,14 @@
 
 {% block content %}
  <div class="mb-4">
-    <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-warning" role="button">Add Your Experience</a>
+    <a href="{% url 'add_review_company' company.board.pk company.pk %}" class="btn btn-primary" role="button">Add Your Experience</a>
   </div>
 
   {% for review in company.get_recent_reviews %}
     <div class="card mb-2" {% if forloop.first %}border-dark{% endif %}">
     {% if forloop.first %}
 
-      <div class="card-header text-white bg-success py-2 px-3"><b>{{ company.name }}</b>
+      <div class="card-header text-white bg-warning py-2 px-3"><b>{{ company.name }}</b>
        
        <br><h5><b>{{ company.get_avg.overall_rating__avg }}</b> overall rating</h5>
        
