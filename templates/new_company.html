@@ -10,9 +10,11 @@
 {% endblock %}
 
 {% block content %}
+
   <form method="post">
+    
     {% csrf_token %}
-    {% include 'includes/form.html' %}
+    <p>(Rental Company or Landlord) {% include 'includes/form.html' %}</p>
 
     <button type="submit" class="btn btn-success">Post</button>
   </form>

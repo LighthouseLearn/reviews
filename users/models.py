@@ -12,3 +12,4 @@ class CustomUser(AbstractUser):
     )
     age = models.PositiveIntegerField(default=0)
     student_designation = models.CharField(max_length=20, choices=DESIGNATION, null=True, default="None", blank=True)
+    #email = models.EmailField(unique=True)
